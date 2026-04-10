@@ -1,0 +1,178 @@
+/* --- 1. CORE STYLE (Restored White Backgrounds) --- */
+body {
+    background-color: #f8f9fa !important; /* Back to your original off-white/light gray */
+    font-family: 'Poppins', sans-serif;
+    color: #2f3542; /* Keeps text dark and readable */
+}
+
+.anime-brand { 
+    font-family: 'Bebas Neue', cursive; 
+    font-size: 2rem; 
+    color: #2f3542; 
+}
+
+h2 {
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 2px;
+    font-size: 3rem;
+}
+
+/* --- 2. THE TOP BANNER (Restored Gradient) --- */
+.custom-carousel-bg {
+    /* Reverted back to the original pink/purple gradient */
+    background: linear-gradient(45deg, #fcd7d7, #dbdafd) !important;
+    padding: 80px 0;
+    border-radius: 0 0 50px 50px;
+}
+
+/* --- 3. NAVIGATION (White) --- */
+.custom-nav {
+    background-color: #ffffff !important; /* Back to white nav */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Soft edge */
+}
+
+/* Links stay dark Slate */
+.custom-nav .nav-link {
+    color: #2f3542 !important; 
+    font-weight: 500;
+}
+
+/* Links highlight red on hover */
+.custom-nav .nav-link:hover {
+    color: #dc3545 !important; 
+}
+
+/* Navbar Brand Slate */
+.custom-nav .navbar-brand {
+    color: #2f3542 !important;
+}
+
+/* Cart count badge Slate */
+#cart-count {
+    background-color: #2f3542;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* --- 4. PRODUCT CARDS (Uniform Square Size) --- */
+.product-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff; /* White cards */
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    /* Reverted to original Red glowing shadow */
+    box-shadow: 0 15px 30px rgba(255, 71, 87, 0.2) !important;
+}
+
+/* Forces identical square size for all images */
+.product-img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+}
+
+.product-img-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.product-card:hover img {
+    transform: scale(1.05); 
+}
+
+/* --- 5. BUTTONS & FILTERS (Restored Red/Slate Logic) --- */
+/* Your original Dark Slate buttons for adding to cart */
+.btn-dark, .btn-danger {
+    background-color: #2f3542 !important;
+    border: none;
+    transition: 0.3s;
+    border-radius: 20px;
+}
+
+.btn-dark:hover, .btn-danger:hover {
+    box-shadow: 0 0 25px #2f3542;
+    transform: scale(1.05);
+}
+
+.btn-danger:active {
+    background-color: #0f0f5d66 !important; 
+    transform: scale(0.98);
+}
+
+/* Outline Filter Buttons */
+.btn-outline-danger {
+    color: #2f3542 !important; /* Labels are Slate */
+    border-color: #dc3545 !important; /* Border is Red */
+}
+
+/* Selected button highlights Red */
+.btn-outline-danger.active, 
+.btn-outline-danger:hover {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+/* Target price text, keep Red to make it pop */
+.price-text {
+    color: #dc3545 !important; 
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* --- 6. MISC UI --- */
+.offcanvas {
+    background-color: #ffffff;
+    border-left: 5px solid #ada9e4 !important; /* Subtle purple divider */
+}
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1055;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Update Search Bar to match theme */
+#productSearch {
+    border-radius: 30px;
+    border: 1px solid #ced4da;
+    padding: 10px 20px;
+}
+
+#productSearch:focus {
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    border-color: #dc3545;
+}
+
+/* Animations from your previous CSS */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
