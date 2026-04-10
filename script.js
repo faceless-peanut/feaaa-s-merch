@@ -10,8 +10,10 @@ $(document).ready(function() {
         
         // Show Toast
         let toastEl = document.getElementById('cartToast');
-        $('#toast-message').text(title + " added to cart!");
-        new bootstrap.Toast(toastEl).show();
+        if (toastEl) {
+            $('#toast-message').text(title + " added to cart!");
+            new bootstrap.Toast(toastEl).show();
+        }
     }
 
     // From Main Grid
@@ -29,7 +31,10 @@ $(document).ready(function() {
         let price = parseFloat($('#modalPrice').text().replace('RM', '').trim());
         let img = $('#modalImg').attr('src');
         addItem(title, price, img);
-        bootstrap.Modal.getInstance($('#productModal')).hide();
+        let modalEl = document.getElementById('productModal');
+        if (modalEl) {
+            bootstrap.Modal.getInstance(modalEl).hide();
+        }
     });
 
     // --- 2. MODAL POPULATOR ---
@@ -47,19 +52,21 @@ $(document).ready(function() {
         $('.filter-btn').removeClass('active');
         $(this).addClass('active');
         let choice = $(this).text().toLowerCase().trim();
-        choice === "all" ? $('.col-lg-3').fadeIn() : ($('.col-lg-3').hide(), $('.' + choice).fadeIn());
+        choice === "all" ? $('.col-lg-3, .col-6').fadeIn() : ($('.col-lg-3, .col-6').hide(), $('.' + choice).fadeIn());
     });
 
     $('#productSearch').on('keyup', function() {
         let value = $(this).val().toLowerCase();
-        $('.col-lg-3').filter(function() {
+        $('.col-lg-3, .col-6').filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
     });
 
     // --- 4. UI REFRESH ---
     function updateCartUI() {
-        $('#cart-count, #floating-count').text(cart.length);
+        // Updates BOTH the desktop link and the floating mobile button
+        $('#cart-count, #floating-count').text(cart.length); 
+        
         let cartList = $('#cart-items-list').empty();
         let total = 0;
 
@@ -83,16 +90,23 @@ $(document).ready(function() {
         $('#cart-total-amount').text(total.toFixed(2));
     }
 
+    // --- 5. REMOVE & CLEAR ---
     $(document).on('click', '.remove-item', function() {
-        cart.splice($(this).data('index'), 1);
+        let index = $(this).data('index');
+        cart.splice(index, 1);
         localStorage.setItem('animeCart', JSON.stringify(cart));
         updateCartUI();
     });
 
     $('#clear-cart').click(function() {
-        if(confirm("Clear all items?")) { cart = []; localStorage.removeItem('animeCart'); updateCartUI(); }
+        if(confirm("Clear all items?")) { 
+            cart = []; 
+            localStorage.removeItem('animeCart'); 
+            updateCartUI(); 
+        }
     });
 
+    // --- 6. CHECKOUT ---
     $('#checkout-whatsapp').click(function() {
         if (!cart.length) return;
         let msg = "Order for FEAAA's MERCH:%0a";
